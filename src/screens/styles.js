@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    alignItems:'center'
+    alignItems:'center',
+
   },
  buttonContainer: {
     marginTop: height * 0.002,
@@ -40,6 +41,17 @@ const styles = StyleSheet.create({
     margin:height*0.01,
     borderRadius:10,
   },
+  boxContainer2: {
+    paddingTop: height * 0.01,
+    backgroundColor: 'white',
+    elevation: 5,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center',
+    marginVertical:height*0.3,
+    marginHorizontal:height*0.01,
+    borderRadius:10,
+  },
   item: {
     margin: width * 0.02,
     marginBottom: height * 0.01,
@@ -48,51 +60,28 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  itemPhoto: {
-    width: width * 0.42,
-    height: height * 0.15,
-    backgroundColor: '#ededed',
-    borderRadius: 5,
-    overflow: 'visible',
-  },
-  itemPhoto2: {
-    width: width *0.9,
-    height: height * 0.3,
-    backgroundColor: '#ededed',
-    borderRadius: 5,
-    overflow: 'visible',
-  },
   listContainer: {
     marginTop: height * 0.01,
     flex: 1,
   },
-  emptyContainer:{
-    width:width*1,
-    height:height*1,
-    alignItems:'center',
-    justifyContent:'center'
-  },
-  sectionHeader: {
-    fontSize: height * 0.032,
-    color: 'black',
-    fontFamily: 'Montserrat-Bold',
-  },
-  badgeStyle: {
-    position: 'absolute',
-    top: 1,
-    right: 1,
-  },
   name: {
     height: height * 0.06,
-    width: width * 0.42,
+    width: width * 0.9,
+    alignItems:'flex-start',
+  },
+  name3: {
+    height: height * 0.06,
+    width: width * 0.9,
+    alignItems:'center',
+  },
+  name2: {
     alignItems:'flex-start',
   },
   loaderContainer: {
-    height: height * 0.6,
+    height: height * 1,
     width: width * 1,
     justifyContent: 'center',
     alignSelf: 'center',
-    // backgroundColor: 'rgba(52, 52, 52, 0.03)',
     borderRadius: 10,
   },
   indicator: {
@@ -123,6 +112,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Regular',
     fontWeight:'bold',
   },
+  titleText: {
+    color: 'black',
+    margin:width * 0.01 ,
+    textAlign: 'center',
+    fontFamily: 'Montserrat-Regular',
+    fontWeight:'bold',
+    fontSize:width * 0.06,
+  },
   itemText2:{
     color: '#FAA311',
     marginTop: 5,
@@ -131,13 +128,18 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Regular',
   },
   descStyle:{
-    paddingVertical:width*0.02,
+    paddingVertical:width*0.002,
   },
   descriptionText: {
     color:'black',
-    marginTop: 2,
-    width: width * 0.42,
+    width: width * 0.9,
     textAlign: 'left',
+  },
+  descriptionText2: {
+    color:'black',
+    width: width * 0.9,
+    textAlign: 'left',
+    marginVertical:width * 0.02,
   },
   sectionList: {
     paddingLeft: width * 0.03,

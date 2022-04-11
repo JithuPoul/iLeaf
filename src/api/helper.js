@@ -3,7 +3,7 @@ import {apiCallHandler} from './index';
 export const fetchDetails = async () => {
   return apiCallHandler(
     'GET',
-    'https://s3-ap-southeast-1.amazonaws.com/he-public-data/TopRamen8d30951.json',
+    'https://jsonplaceholder.typicode.com/posts',
     'application/json',
   )
     .then(data => {
@@ -14,10 +14,10 @@ export const fetchDetails = async () => {
     });
 };
 
-export const fetchImages = async () => {
+export const fetchDetailsbyUser = async (id) => {
     return apiCallHandler(
       'GET',
-      'https://s3-ap-southeast-1.amazonaws.com/he-public-data/noodlesec253ad.json',
+      `https://jsonplaceholder.typicode.com/posts/${id}`,
       'application/json',
     )
       .then(data => {

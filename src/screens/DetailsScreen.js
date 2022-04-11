@@ -15,25 +15,32 @@ import styles from './styles';
 import StarRating from 'react-native-easy-rating';
 const {height, width} = Dimensions.get('window');
 import {connect} from 'react-redux';
+import {fetchDetailsbyUser} from '../api/helper';
 
-const DetailsScreen = ({navigation, route, data}) => {
+const DetailsScreen = ({navigation, route}) => {
   const [loading, setLoading] = useState(true);
   const [value, setValue] = useState(route.params.index);
   const isFocused = useIsFocused();
-  const [listData, setData] = useState([]);
+  const [listData, setData] = useState('');
 
   useEffect(() => {
-    const items = [];
-    console.log('value',value,'data',data);
-    data.map((item, index) => {
-      if (index === value) {
-        items.push(item);
-      }
-    });
-    setData(items);
-    console.log('items', items);
-    setLoading(false);
-  }, [value]);
+    fetchResDetailsUserId();
+  }, [isFocused]);
+
+  const fetchResDetailsUserId = async () => {
+    setLoading(true);
+    console.log('value', value);
+    const packages = await fetchDetailsbyUser(value);
+    if (packages !== '') {
+      console.log('packages', packages);
+      setData(packages);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    console.log(listData, 'listData');
+  }, [listData]);
 
   return (
     <View style={styles.container}>
@@ -42,49 +49,29 @@ const DetailsScreen = ({navigation, route, data}) => {
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
       )}
-      {listData.length > 0 ? (
-        <View style={styles.listContainer}>
-          <View style={styles.boxContainer}>
-            <View style={styles.item}>
-              <TouchableOpacity>
-                <Image
-                  source={{
-                    uri: listData[0].image,
-                  }}
-                  style={styles.itemPhoto2}
-                  resizeMode="contain"
-                />
-              </TouchableOpacity>
-              <View style={styles.name}>
-                <Text style={styles.itemText}>{listData[0].Brand}</Text>
-                {listData[0].Stars !== undefined && listData[0].Stars !== null ? (
-                  <StarRating
-                    rating={listData[0].Stars}
-                    max={5}
-                    iconWidth={width * 0.03}
-                    iconHeight={width * 0.03}
-                  />
-                ) : null}
-              </View>
-              <View style={styles.descStyle}>
-                <Text style={styles.descriptionText}>
-                  {listData[0].Variety}
-                </Text>
-              </View>
-              <View style={styles.name}>
-                <Text style={styles.itemText2}>{listData[0].Country}</Text>
-              </View>
+      <View style={styles.listContainer}>
+        <View style={styles.boxContainer2}>
+          <View style={styles.item}>
+            <View style={styles.name2}>
+              <Text style={styles.itemText}>User Id : {listData.userId}</Text>
+            </View>
+            <View style={styles.descStyle}>
+              <Text style={styles.descriptionText2}>
+                <Text style={styles.itemText}> Title : </Text>
+                {listData.title}
+              </Text>
+            </View>
+            <View style={styles.descStyle}>
+              <Text style={styles.descriptionText2}>
+                <Text style={styles.itemText}> Body : </Text>
+                {listData.body}
+              </Text>
             </View>
           </View>
         </View>
-      ) : null}
+      </View>
     </View>
   );
 };
 
-const mapStateToProps = state => {
-  const data = state.saveReducer;
-  return {data};
-};
-
-export default connect(mapStateToProps, {})(DetailsScreen);
+export default DetailsScreen;
